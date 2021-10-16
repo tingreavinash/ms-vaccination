@@ -36,12 +36,8 @@ public class VaccinationCenterController {
         RequiredResponse response = new RequiredResponse();
         VaccinationCenter center = repo.findById(id).get();
         response.setVaccinationCenter(center);
-        List<Citizen> citizens = new ArrayList<>();
-        try{
-            citizens = restTemplate.getForObject("http://citizen-service/citizen/centerid/"+center.getId(), List.class);
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
+
+        List<Citizen> citizens = citizens = restTemplate.getForObject("http://citizen-service/citizen/centerid/"+center.getId(), List.class);
         response.setCitizens(citizens);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
