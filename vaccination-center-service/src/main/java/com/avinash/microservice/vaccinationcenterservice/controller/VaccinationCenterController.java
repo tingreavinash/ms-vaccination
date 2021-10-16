@@ -38,7 +38,7 @@ public class VaccinationCenterController {
         response.setVaccinationCenter(center);
         List<Citizen> citizens = new ArrayList<>();
         try{
-            citizens = restTemplate.getForObject("http://localhost:8082/citizen/centerid/"+center.getId(), List.class);
+            citizens = restTemplate.getForObject("http://citizen-service/citizen/centerid/"+center.getId(), List.class);
         }catch (Exception ex){
             ex.printStackTrace();
         }
