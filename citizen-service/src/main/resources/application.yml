@@ -7,7 +7,7 @@ spring:
 ---
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/vaccinationdb
+    url: jdbc:mysql://localhost:3306/citizendb
     username: testuser
     password: test123
     driver-class-name: com.mysql.cj.jdbc.Driver
