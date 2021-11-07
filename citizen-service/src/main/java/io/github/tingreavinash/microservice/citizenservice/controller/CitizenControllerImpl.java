@@ -52,16 +52,8 @@ public class CitizenControllerImpl implements CitizenController {
 
     @Override
     public ResponseEntity<?> addCitizen(@RequestBody Citizen citizen) {
-        try {
-            Citizen result = citizenService.addCitizen(citizen);
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        } catch (BusinessException ex) {
-            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
-            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
-        } catch (Exception ex) {
-            ControllerException ce = new ControllerException("203", "Something went wrong in controller - " + ex.getMessage());
-            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
-        }
+        Citizen result = citizenService.addCitizen(citizen);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @Override
@@ -95,15 +87,7 @@ public class CitizenControllerImpl implements CitizenController {
 
     @Override
     public ResponseEntity<?> deleteCitizenById(@PathVariable("id") Integer citizenId) {
-        try {
-            citizenService.deleteCitizenById(citizenId);
-            return new ResponseEntity<>("Citizen record deleted with id " + citizenId, HttpStatus.ACCEPTED);
-        } catch (BusinessException ex) {
-            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
-            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
-        } catch (Exception ex) {
-            ControllerException ce = new ControllerException("206", "Something went wrong in controller");
-            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
-        }
+        citizenService.deleteCitizenById(citizenId);
+        return new ResponseEntity<>("Citizen record deleted with id " + citizenId, HttpStatus.ACCEPTED);
     }
 }

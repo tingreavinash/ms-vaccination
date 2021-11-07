@@ -1,6 +1,7 @@
 package io.github.tingreavinash.microservice.citizenservice.Service;
 
 import io.github.tingreavinash.microservice.citizenservice.Exception.BusinessException;
+import io.github.tingreavinash.microservice.citizenservice.Exception.EmptyInputException;
 import io.github.tingreavinash.microservice.citizenservice.entity.Citizen;
 import io.github.tingreavinash.microservice.citizenservice.repository.CitizenRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,11 +96,9 @@ public class CitizenServiceImpl implements CitizenService {
 
     @Override
     public Citizen addCitizen(Citizen citizen) {
-        try {
-            return citizenRepo.save(citizen);
-        } catch (IllegalArgumentException ex) {
-            throw new BusinessException("108", "The id/entity that you passed is invalid - " + ex.getMessage());
-        }
+        if (citizen.getName().isEmpty() || citizen.getName().length() == 0)
+            throw new EmptyInputException("601", "Input fields are empty");
+        return citizenRepo.save(citizen);
     }
 
 
