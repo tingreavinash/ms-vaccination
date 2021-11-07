@@ -1,20 +1,21 @@
 package io.github.tingreavinash.microservice.citizenservice.Exception;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-public class BusinessException extends RuntimeException{
+public class ControllerException extends RuntimeException{
     private String errorCode;
     private String description;
 
-    public BusinessException(String errorCode, String description) {
+    public ControllerException(String errorCode, String description) {
         super();
         this.errorCode = errorCode;
         this.description = description;
     }
 
-    public BusinessException() {
+    public ControllerException() {
         super();
     }
 }

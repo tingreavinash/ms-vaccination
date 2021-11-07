@@ -1,5 +1,7 @@
 package io.github.tingreavinash.microservice.citizenservice.controller;
 
+import io.github.tingreavinash.microservice.citizenservice.Exception.BusinessException;
+import io.github.tingreavinash.microservice.citizenservice.Exception.ControllerException;
 import io.github.tingreavinash.microservice.citizenservice.Service.CitizenService;
 import io.github.tingreavinash.microservice.citizenservice.entity.Citizen;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,39 +22,88 @@ public class CitizenControllerImpl implements CitizenController {
     private CitizenService citizenService;
 
     @Override
-    public ResponseEntity<List<Citizen>> getCitizensByCenterId(@PathVariable Integer id) {
-        List<Citizen> citizens = citizenService.getCitizenByVaccinationCenterId(id);
-        return new ResponseEntity<>(citizens, HttpStatus.OK);
+    public ResponseEntity<?> getCitizensByCenterId(@PathVariable Integer id) {
+        try {
+            List<Citizen> citizens = citizenService.getCitizenByVaccinationCenterId(id);
+            return new ResponseEntity<List<Citizen>>(citizens, HttpStatus.OK);
+        } catch (BusinessException ex) {
+            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            ControllerException ce = new ControllerException("201", "Something went wrong in controller - " + ex.getMessage());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @Override
-    public ResponseEntity<List<Citizen>> getAllCitizens() {
-        List<Citizen> citizens = citizenService.getAllCitizens();
-        return new ResponseEntity<>(citizens, HttpStatus.OK);
+    public ResponseEntity<?> getAllCitizens() {
+        try {
+            List<Citizen> citizens = citizenService.getAllCitizens();
+            return new ResponseEntity<>(citizens, HttpStatus.OK);
+        } catch (BusinessException ex) {
+            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            ControllerException ce = new ControllerException("202", "Something went wrong in controller - " + ex.getMessage());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    public ResponseEntity<Citizen> addCitizen(@RequestBody Citizen citizen) {
-        Citizen result = citizenService.addCitizen(citizen);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    public ResponseEntity<?> addCitizen(@RequestBody Citizen citizen) {
+        try {
+            Citizen result = citizenService.addCitizen(citizen);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (BusinessException ex) {
+            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            ControllerException ce = new ControllerException("203", "Something went wrong in controller - " + ex.getMessage());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    public ResponseEntity<Citizen> addOrUpdateCitizen(@RequestBody Citizen citizen) {
-        Citizen result = citizenService.updateCitizen(citizen);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    public ResponseEntity<?> addOrUpdateCitizen(@RequestBody Citizen citizen) {
+        try {
+            Citizen result = citizenService.updateCitizen(citizen);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (BusinessException ex) {
+            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            ControllerException ce = new ControllerException("204", "Something went wrong in controller - " + ex.getMessage());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    public ResponseEntity<Citizen> patchCitizen(@PathVariable Integer id, @RequestBody Citizen citizen) {
-        Citizen result = citizenService.patchCitizen(id, citizen);
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    public ResponseEntity<?> patchCitizen(@PathVariable Integer id, @RequestBody Citizen citizen) {
+
+        try {
+            Citizen result = citizenService.patchCitizen(id, citizen);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        } catch (BusinessException ex) {
+            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            ControllerException ce = new ControllerException("205", "Something went wrong in controller - " + ex.getMessage());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        }
     }
 
     @Override
-    public ResponseEntity<String> deleteCitizenById(@PathVariable("id") Integer citizenId) {
-        citizenService.deleteCitizenById(citizenId);
-        return new ResponseEntity<>("Citizen record deleted with id " + citizenId, HttpStatus.ACCEPTED);
-
+    public ResponseEntity<?> deleteCitizenById(@PathVariable("id") Integer citizenId) {
+        try {
+            citizenService.deleteCitizenById(citizenId);
+            return new ResponseEntity<>("Citizen record deleted with id " + citizenId, HttpStatus.ACCEPTED);
+        } catch (BusinessException ex) {
+            ControllerException ce = new ControllerException(ex.getErrorCode(), ex.getDescription());
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        } catch (Exception ex) {
+            ControllerException ce = new ControllerException("206", "Something went wrong in controller");
+            return new ResponseEntity<ControllerException>(ce, HttpStatus.BAD_REQUEST);
+        }
     }
 }

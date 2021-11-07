@@ -12,20 +12,20 @@ import java.util.List;
 public interface CitizenController {
 
     @RequestMapping(value = "/centerid/{id}", method = RequestMethod.GET)
-    ResponseEntity<List<Citizen>> getCitizensByCenterId(@PathVariable Integer id);
+    ResponseEntity<?> getCitizensByCenterId(@PathVariable Integer id);
 
     @RequestMapping(value = "/getAllCitizens", method = RequestMethod.GET)
-    ResponseEntity<List<Citizen>> getAllCitizens();
+    ResponseEntity<?> getAllCitizens();
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    ResponseEntity<Citizen> addCitizen(@RequestBody Citizen citizen);
+    ResponseEntity<?> addCitizen(@RequestBody Citizen citizen);
 
     @RequestMapping(value = "/update/v1", method = RequestMethod.PUT)
-    ResponseEntity<Citizen> addOrUpdateCitizen(@RequestBody Citizen citizen);
+    ResponseEntity<?> addOrUpdateCitizen(@RequestBody Citizen citizen);
 
     @RequestMapping(value = "/update/v2/{id}", method = RequestMethod.PATCH)
-    ResponseEntity<Citizen> patchCitizen(@PathVariable Integer id, @RequestBody Citizen citizen);
+    ResponseEntity<?> patchCitizen(@PathVariable Integer id, @RequestBody Citizen citizen);
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    ResponseEntity<String> deleteCitizenById(@PathVariable("id") Integer citizenId);
+    ResponseEntity<?> deleteCitizenById(@PathVariable("id") Integer citizenId);
 }
