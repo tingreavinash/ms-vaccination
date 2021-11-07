@@ -21,9 +21,9 @@ public class CitizenServiceImpl implements CitizenService {
         try {
             return citizenRepo.findById(id).get();
         } catch (IllegalArgumentException ex) {
-            throw new BusinessException("101", "The id that you requested is invalid - "+ex.getMessage());
+            throw new BusinessException("101", "The id that you requested is invalid - " + ex.getMessage());
         } catch (NoSuchElementException ex) {
-            throw new BusinessException("102", "No such element found - "+ex.getMessage());
+            throw new BusinessException("102", "No such element found - " + ex.getMessage());
         }
     }
 
@@ -32,7 +32,7 @@ public class CitizenServiceImpl implements CitizenService {
         try {
             return citizenRepo.findByVaccinationCenterId(id);
         } catch (IllegalArgumentException ex) {
-            throw new BusinessException("103", "The id that you requested is invalid - "+ex.getMessage());
+            throw new BusinessException("103", "The id that you requested is invalid - " + ex.getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ public class CitizenServiceImpl implements CitizenService {
         try {
             return citizenRepo.save(citizen);
         } catch (IllegalArgumentException ex) {
-            throw new BusinessException("104", "The entity that you passed is invalid - "+ex.getMessage());
+            throw new BusinessException("104", "The entity that you passed is invalid - " + ex.getMessage());
         }
     }
 
@@ -76,9 +76,9 @@ public class CitizenServiceImpl implements CitizenService {
 
             }
         } catch (IllegalArgumentException ex) {
-            throw new BusinessException("105", "The id/entity that you passed is invalid - "+ex.getMessage());
+            throw new BusinessException("105", "The id/entity that you passed is invalid - " + ex.getMessage());
         } catch (NoSuchElementException ex) {
-            throw new BusinessException("106", "No such element found - "+ex.getMessage());
+            throw new BusinessException("106", "No such element found - " + ex.getMessage());
         }
 
         return null;
@@ -89,7 +89,7 @@ public class CitizenServiceImpl implements CitizenService {
         try {
             citizenRepo.deleteById(id);
         } catch (IllegalArgumentException ex) {
-            throw new BusinessException("107", "The id/entity that you passed is invalid - "+ex.getMessage());
+            throw new BusinessException("107", "The id/entity that you passed is invalid - " + ex.getMessage());
         }
     }
 
@@ -98,7 +98,7 @@ public class CitizenServiceImpl implements CitizenService {
         try {
             return citizenRepo.save(citizen);
         } catch (IllegalArgumentException ex) {
-            throw new BusinessException("108", "The id/entity that you passed is invalid - "+ex.getMessage());
+            throw new BusinessException("108", "The id/entity that you passed is invalid - " + ex.getMessage());
         }
     }
 

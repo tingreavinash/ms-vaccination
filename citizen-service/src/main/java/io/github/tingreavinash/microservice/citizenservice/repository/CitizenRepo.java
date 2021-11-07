@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface CitizenRepo extends JpaRepository<Citizen, Integer> {
 
-    public List<Citizen> findByVaccinationCenterId(Integer id);
+    List<Citizen> findByVaccinationCenterId(Integer id);
 }

@@ -1,7 +1,6 @@
 package io.github.tingreavinash.microservice.citizenservice.Service;
 
 import io.github.tingreavinash.microservice.citizenservice.entity.Citizen;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
