@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
+import javax.ws.rs.Path;
 import java.util.List;
 
 @RestController
@@ -31,5 +33,22 @@ public class CitizenController {
     public ResponseEntity<Citizen> add(@RequestBody Citizen citizen){
         Citizen result = repo.save(citizen);
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.PUT)
+    public ResponseEntity<Citizen> update(@RequestBody Citizen citizen){
+        Citizen result = repo.save(citizen);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> update(@PathVariable("id") Integer citizenId){
+        try{
+            repo.deleteById(citizenId);
+            return new ResponseEntity<>("Citizen record deleted with id "+citizenId, HttpStatus.ACCEPTED);
+        }catch (Exception ex){
+            return new ResponseEntity<>("Record not found.", HttpStatus.NOT_FOUND);
+        }
+
     }
 }
