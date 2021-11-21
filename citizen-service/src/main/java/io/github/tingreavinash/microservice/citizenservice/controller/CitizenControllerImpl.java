@@ -52,7 +52,7 @@ public class CitizenControllerImpl implements CitizenController {
 
     @Override
     public ResponseEntity<?> addCitizen(@RequestBody Citizen citizen) {
-        Citizen result = citizenService.addCitizen(citizen);
+        Citizen result = citizenService.addCitizen(citizen); // Here we are not catching any exception, so it will be handled by global exception handler
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
