@@ -1,4 +1,4 @@
-package io.github.tingreavinash.microservice.citizenservice.config;
+package io.github.tingreavinash.microservice.vaccinationcenterservice.config;
 
 import io.swagger.v3.oas.models.ExternalDocumentation;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -17,12 +17,12 @@ public class SwaggerConfig {
                 .info(getApiInfo())
                 .externalDocs(new ExternalDocumentation()
                         .description("Github Link")
-                        .url("https://github.com/tingreavinash/ms-vaccination/tree/master/citizen-service"));
+                        .url("https://github.com/tingreavinash/ms-vaccination/tree/master/vaccination-center-service"));
     }
 
     private Info getApiInfo() {
         return new Info()
-                .title("Citizen Microservice")
+                .title("Vaccination Center Microservice")
                 .description("Swagger API documentation for Citizen microservice")
                 .contact(new Contact()
                         .name("Avinash Tingre")
