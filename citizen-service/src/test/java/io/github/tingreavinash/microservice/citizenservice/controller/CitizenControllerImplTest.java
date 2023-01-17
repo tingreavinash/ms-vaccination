@@ -1,7 +1,6 @@
 package io.github.tingreavinash.microservice.citizenservice.controller;
 
 import io.github.tingreavinash.microservice.citizenservice.Service.CitizenService;
-import io.github.tingreavinash.microservice.citizenservice.Service.CitizenServiceImpl;
 import io.github.tingreavinash.microservice.citizenservice.entity.Citizen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -3,9 +3,10 @@ package io.github.tingreavinash.microservice.vaccinationcenterservice.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @Data
